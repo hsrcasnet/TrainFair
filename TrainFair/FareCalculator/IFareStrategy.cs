@@ -2,7 +2,8 @@
 
 namespace TrainFair.FareCalculator
 {
-    public interface IFareStrategy {
+    public interface IFareStrategy
+    {
         float GetFare(IFareRule ruleValues, float basicFare);
     }
 }

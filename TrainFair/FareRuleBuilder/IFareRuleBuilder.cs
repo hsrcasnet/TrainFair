@@ -1,6 +1,7 @@
 ﻿namespace TrainFair.FareRuleBuilder
 {
-    public interface IFareRuleBuilder {
+    public interface IFareRuleBuilder
+    {
         void DisplayTrainFare();
     }
 }

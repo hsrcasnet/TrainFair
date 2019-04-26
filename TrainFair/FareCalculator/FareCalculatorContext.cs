@@ -2,16 +2,18 @@
 
 namespace TrainFair.FareCalculator
 {
-    public class FareCalculatorContext {
-
+    public class FareCalculatorContext
+    {
         private readonly IFareStrategy _fareStrategy;
-        public FareCalculatorContext(IFareStrategy fareStrategy) {
+
+        public FareCalculatorContext(IFareStrategy fareStrategy)
+        {
             this._fareStrategy = fareStrategy;
         }
 
         public float GetFareDetails(IFareRule fareRules, float basicFare)
         {
-            return _fareStrategy.GetFare(fareRules, basicFare);
+            return this._fareStrategy.GetFare(fareRules, basicFare);
         }
     }
 }
