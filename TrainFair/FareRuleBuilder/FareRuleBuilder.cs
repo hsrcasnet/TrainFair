@@ -11,7 +11,7 @@ namespace TrainFair.FareRuleBuilder
         {
             //Fare pricing rules 
             //According to the rail transit network fare system approved by the municipal price department, that is:
-            //rail transit implements multi-level fare based on mileage, 3 yuan for 0~6 kilometers, 1 yuan for every 10 kilometers after 6 kilometers;
+            //rail transit implements multi-level fare based on mileage, 3 CHF for 0~6 kilometers, 1 CHF for every 10 kilometers after 6 kilometers;
             //fare calculation The shortest path method is adopted, that is, when there is more than one transfer path between two stations, the shortest path is selected as the basis for calculating the fare between the two stations.
             Console.WriteLine("Metro fare calculation");
             Console.WriteLine("-----------------------");
@@ -28,7 +28,7 @@ namespace TrainFair.FareRuleBuilder
             FareCalculatorContext fareCalculatorContext = new FareCalculatorContext(new StationRuleFareCalculator());
             var totalFare = fareCalculatorContext.GetFareDetails(stations, FareConstants.BasicFare);
             Console.WriteLine("-----------------------");
-            Console.WriteLine("from {1} to {2}, distance {3}KM, car fare is: {0} yuan", totalFare, fromStation, toStation, stations.StationDistance);
+            Console.WriteLine("from {1} to {2}, distance {3}KM, car fare is: {0} CHF", totalFare, fromStation, toStation, stations.StationDistance);
             Console.WriteLine("-----------------------");
 
             Console.WriteLine("Is it a VIP (y/n):");
@@ -43,7 +43,7 @@ namespace TrainFair.FareRuleBuilder
                 totalFare = fareCalculatorContext.GetFareDetails(ageFareRuleModel, totalFare);
                 Console.WriteLine("\n-----------------------");
                 Console.WriteLine("Enjoy Member Discount");
-                Console.WriteLine("From {1} to {2}, enjoy a {3} discount, the car fare is: {0} yuan", totalFare, fromStation, toStation, FareConstants.VIPDiscount);
+                Console.WriteLine("From {1} to {2}, enjoy a {3} discount, the car fare is: {0} CHF", totalFare, fromStation, toStation, FareConstants.VIPDiscount);
             }
 
             Console.WriteLine("\n is there any other fee (y/n):");
@@ -54,13 +54,13 @@ namespace TrainFair.FareRuleBuilder
                 Console.WriteLine("\nEnter the cost name:");
                 otherFareRuleModel.FareRuleId = 3;
                 otherFareRuleModel.OtherFareName = Console.ReadLine();
-                Console.WriteLine("\n input fee (yuan):");
+                Console.WriteLine("\nInput fee (CHF):");
                 otherFareRuleModel.AdditionalFare = float.Parse(Console.ReadLine());
                 fareCalculatorContext = new FareCalculatorContext(new OtherRuleFareCalculator());
                 totalFare = fareCalculatorContext.GetFareDetails(otherFareRuleModel, totalFare);
                 Console.WriteLine("-----------------------");
                 Console.WriteLine("Total fare");
-                Console.WriteLine("from {1} to {2}, car fare is: {0} yuan", totalFare, fromStation, toStation);
+                Console.WriteLine("From {1} to {2}, car fare is: {0} CHF", totalFare, fromStation, toStation);
             }
         }
 
